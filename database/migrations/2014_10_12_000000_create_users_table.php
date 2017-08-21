@@ -18,6 +18,12 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('role');
+            $table->boolean('active');
+            $table->mediumInteger('provider_id')->nullable()->unsigned()->index();
+            $table->foregin('provider_id')->references('id')->on('providers')->onDelete('cascade');
+            $table->mediumInteger('contractor_id')->nullable()->unsigned()->index();
+            $table->foregin('contractor_id')->references('id')->on('contractors')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });
