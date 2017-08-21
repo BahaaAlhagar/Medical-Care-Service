@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProviderLocationsTable extends Migration
+class CreateContractorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateProviderLocationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('provider_locations', function (Blueprint $table) {
+        Schema::create('contractors', function (Blueprint $table) {
             $table->increments('id');
-            // providers will have more than location and phone number
-            $table->integer('provider_id')->nullable()->unsigned()->index();
-            $table->foreign('provider_id')->references('id')->on('providers')->onDelete('cascade');
             $table->string('name');
+            $table->string('location');
             $table->string('mobile', 11);
             $table->string('phone', 11);
+            $table->boolean('active');
+            $table->date('contract_start');
+            $table->date('contract_end');
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ class CreateProviderLocationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('provider_locations');
+        Schema::dropIfExists('contractors');
     }
 }

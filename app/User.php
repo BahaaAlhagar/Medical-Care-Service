@@ -32,5 +32,8 @@ class User extends Authenticatable
         return $this->belongsTo(Provider::class);
     }
 
-
+    public function Contractor()
+    {
+        return $this->belongsTo(Contractor::class);
+    }
 }
