@@ -36,4 +36,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Contractor::class);
     }
+
+    public function active()
+    {
+        return $this->active;
+    }
 }

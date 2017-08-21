@@ -91,5 +91,14 @@
                 </div>
             </div>
         </div>
+        @if($flash = session('message'))
+        <div class="alert alert-success">
+            {{ $flash }}
+        </div>
+        @elseif($flash = session('error-msg'))
+        <div class="alert alert-danger">
+            {{ $flash }}
+        </div>
+        @endif
     </body>
 </html>

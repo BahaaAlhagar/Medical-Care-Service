@@ -18,8 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('role');
-            $table->boolean('active');
+            $table->string('role')->default('employee');
+            $table->boolean('active')->default(1);
             // the provider will have users to accept services or refuse it depends on the requests made by Beneficiaries 
             $table->integer('provider_id')->nullable()->unsigned()->index();
             $table->foreign('provider_id')->references('id')->on('providers')->onDelete('cascade');
