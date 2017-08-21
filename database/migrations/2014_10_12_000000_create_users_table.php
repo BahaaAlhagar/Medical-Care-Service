@@ -20,8 +20,10 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('role');
             $table->boolean('active');
+            // the provider will have users to accept services or refuse it depends on the requests made by Beneficiaries 
             $table->mediumInteger('provider_id')->nullable()->unsigned()->index();
             $table->foregin('provider_id')->references('id')->on('providers')->onDelete('cascade');
+            // the contractor will have users to add Beneficiaries or disable or delete them
             $table->mediumInteger('contractor_id')->nullable()->unsigned()->index();
             $table->foregin('contractor_id')->references('id')->on('contractors')->onDelete('cascade');
             $table->rememberToken();
