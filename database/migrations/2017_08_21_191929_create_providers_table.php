@@ -18,8 +18,6 @@ class CreateProvidersTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->boolean('active');
-            $table->date('contract_start');
-            $table->date('contract_end');
             $table->timestamps();
         });
     }

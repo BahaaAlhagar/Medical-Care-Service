@@ -18,4 +18,9 @@ class Provider extends Model
     {
     	return $this->hasMany(ProviderLocation::class);
     }
+
+    public function contracts()
+    {
+        return $this->morphMany(contract::class, 'contractable');
+    }
 }

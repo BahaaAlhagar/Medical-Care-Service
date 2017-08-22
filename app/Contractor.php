@@ -10,4 +10,9 @@ class Contractor extends Model
     {
     	return $this->hasMany(User::class);
     }
+
+    public function contracts()
+    {
+        return $this->morphMany(contract::class, 'contractable');
+    }
 }

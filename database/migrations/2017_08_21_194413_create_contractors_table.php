@@ -20,8 +20,6 @@ class CreateContractorsTable extends Migration
             $table->string('mobile', 11);
             $table->string('phone', 11);
             $table->boolean('active');
-            $table->date('contract_start');
-            $table->date('contract_end');
             $table->timestamps();
         });
     }
