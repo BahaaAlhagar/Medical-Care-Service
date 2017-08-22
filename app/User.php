@@ -4,10 +4,13 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Traits\UserStatusAndRoles;
 
 class User extends Authenticatable
 {
     use Notifiable;
+
+    use UserStatusAndRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -37,8 +40,4 @@ class User extends Authenticatable
         return $this->belongsTo(Contractor::class);
     }
 
-    public function active()
-    {
-        return $this->active;
-    }
 }
