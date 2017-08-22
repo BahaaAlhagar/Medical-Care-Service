@@ -20,7 +20,7 @@ class AdminMiddleware
         // access to admin areas if you have admin role and active
         $user = \Auth::user();
 
-        if ($user->role !== 'admin' || !$user->active())
+        if (!$user->isAdmin())
         {
             session()->flash('error-msg', 'You dont have access to this area');
 

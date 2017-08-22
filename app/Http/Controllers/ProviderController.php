@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class ProviderController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('admin')->only('index', 'create', 'store');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,8 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        //
+        $providers = Provider::all();
+        return view('providers/index', compact('providers'));
     }
 
     /**
@@ -24,7 +30,7 @@ class ProviderController extends Controller
      */
     public function create()
     {
-        //
+        return view('providers/createProvider');
     }
 
     /**
