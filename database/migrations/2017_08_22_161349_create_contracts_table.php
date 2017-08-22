@@ -13,7 +13,7 @@ class CreateContractsTable extends Migration
      */
     public function up()
     {
-        Schema::table('contracts', function (Blueprint $table) {
+        Schema::create('contracts', function (Blueprint $table) {
             $table->increments('id');
             $table->date('contract_start');
             $table->date('contract_end');
