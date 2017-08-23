@@ -1,0 +1,30 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700);
+
+html {
+  position: relative;
+  min-height: 100%;
+
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 30px;
+  font-size: 16px;
+  font-family: 'Lato', 'sans-serif';
+}
+.footer {
+  position: absolute;
+  float: left;
+  text-align: center;
+  direction: ltr;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 30px;
+  padding-top: 5px;
+  background-color: black;
+  color: white;
+}
+
+.container-fluid {
+	font-weight: bolder;
+}
