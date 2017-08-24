@@ -21,12 +21,15 @@
         <link href="{{ URL::asset('css/adminboard.css') }}" rel="stylesheet">
 
     @yield('css')
-        <!-- IE 9 -->
+
+        <!--[if lt IE 9]>
         <script src="{{ URL::asset('js/html5shiv.min.js') }}"></script>
+        <![endif]-->
+        
         <script src="{{ URL::asset('js/respond-1.4.2.min.js') }}"></script>
 
 
-        <!-- jquery -->
+        <!-- jquery & bootstrap requirements -->
         <script src="{{ URL::asset('js/jquery-3.2.1.slim.min.js') }}"></script>
         <script src="{{ URL::asset('js/popper.min.js') }}"></script>
         <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
@@ -36,26 +39,30 @@
     <!-- body starts here -->
     <body>
 
-        @include('layouts.admin-nav')
+        <div class="container-fluid">
+            <div class="container">
+                <div class="row">
+                    @include('layouts.admin-nav')
+                    
+                    @yield('content')
+                </div>
+                    @if ($flash = session('message'))
+                        <div id="flash" class="alert alert-success" role="alert">
+                            
+                            <b>{{ $flash }}</b>
 
-        <div class="container">
-        @yield('content')
+                        </div>
+                    @elseif ($flash = session('error-msg'))
+                        <div id="flash" class="alert alert-danger" role="alert">
+                            
+                            <b>{{ $flash }}</b>
 
-        @if ($flash = session('message'))
-        <div id="flash" class="alert alert-success" role="alert">
-            
-            <b>{{ $flash }}</b>
+                        </div>
 
-        </div>
-        @elseif ($flash = session('error-msg'))
-        <div id="flash" class="alert alert-danger" role="alert">
-            
-            <b>{{ $flash }}</b>
+                    @endif
 
-        </div>
-
-        @endif
-
+                
+            </div>
         </div>
 
 

@@ -28,3 +28,22 @@ body {
 .container-fluid {
 	font-weight: bolder;
 }
+
+a {
+  color: white;
+}
+
+a:hover {
+  color: #13c607;
+}
+
+
+.dropdown-item:focus, .dropdown-item:hover {
+    color: #16181b;
+    text-decoration: none;
+    background-color: #adc0d4;
+}
+
+.dropdown-item a {
+    color: #212529;
+}
