@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Provider;
 use Illuminate\Http\Request;
+use App\Http\Requests\storeProviderRequest;
+use App\Http\Requests\updateProviderRequest;
 
 class ProviderController extends Controller
 {
@@ -28,24 +30,15 @@ class ProviderController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('providers/createProvider');
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(storeProviderRequest $request)
     {
-        //
+        $provider = Provider::create($request->all());
+        return response()->json($provider);
     }
 
     /**
@@ -56,19 +49,9 @@ class ProviderController extends Controller
      */
     public function show(Provider $provider)
     {
-        //
+        return view('providers/providerProfile', conmpact('provider'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Provider  $provider
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Provider $provider)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -77,9 +60,10 @@ class ProviderController extends Controller
      * @param  \App\Provider  $provider
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Provider $provider)
+    public function update(updateProviderRequest $request, Provider $provider)
     {
-        //
+        $provider->update($request->all());
+        return response()->json($provider);
     }
 
     /**
@@ -90,6 +74,7 @@ class ProviderController extends Controller
      */
     public function destroy(Provider $provider)
     {
-        //
+        $provider->delete();
+        return response()->json(['Provider Deleted Successfully']);
     }
 }
