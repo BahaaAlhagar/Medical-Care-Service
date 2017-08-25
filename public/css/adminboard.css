@@ -11,6 +11,7 @@ body {
   font-size: 16px;
   font-family: 'Lato', 'sans-serif';
 }
+
 .footer {
   position: absolute;
   float: left;
@@ -46,4 +47,9 @@ a:hover {
 
 .dropdown-item a {
     color: #212529;
+}
+
+
+#navbar-container {
+  margin-bottom: 70px;
 }

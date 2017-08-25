@@ -40,9 +40,10 @@
     <body>
 
         <div class="container-fluid">
+        @include('layouts.admin-nav')
             <div class="container">
                 <div class="row">
-                    @include('layouts.admin-nav')
+                    
                     
                     @yield('content')
                 </div>

@@ -10,8 +10,11 @@ class ProviderController extends Controller
 
     public function __construct()
     {
-        $this->middleware('admin')->only('index', 'create', 'store');
+        $this->middleware('auth');
+        $this->middleware('admin')->only('manage', 'index', 'create', 'store');
     }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +22,9 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        $providers = Provider::all();
-        return view('providers/index', compact('providers'));
+        $providers = Provider::latest()->paginate(10);
+
+        return $this->makeResponse('providers/manageProviders', compact('providers'));
     }
 
     /**
