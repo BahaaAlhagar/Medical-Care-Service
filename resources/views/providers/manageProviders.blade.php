@@ -7,7 +7,20 @@
 
 
 
-manage providers page.
 
+
+
+
+
+
+
+
+
+
+
+
+		@section('js')
+    	<script src="/js/manageProviders.js"></script> 
+    	@endsection
 
 @endsection
