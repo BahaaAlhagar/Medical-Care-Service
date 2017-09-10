@@ -53,3 +53,23 @@ a:hover {
 #navbar-container {
   margin-bottom: 70px;
 }
+
+
+.main-table {
+  text-align: center;
+  width: 100%;
+  margin:0 auto;
+}
+
+table th {
+  text-align: center;
+}
+
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}

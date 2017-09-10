@@ -69,9 +69,6 @@
 
 
         @yield('js')
-        <script type="text/javascript">
-            $('#flash').delay(7000).fadeOut("slow");
-        </script>
 
         <footer class="footer">
         @yield('footer')

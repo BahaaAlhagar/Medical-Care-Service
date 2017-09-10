@@ -9,6 +9,18 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-const app = new Vue({
-    el: '#app'
+const manageProviders = new Vue({
+    el: '#providers',
+    data: {
+    	providers: []
+
+    },
+    methods: {
+
+    },
+    created() {
+    	axios.get('/providers')
+ 		.then(response => this.providers = response.data.providers.data);
+
+    }
 });
