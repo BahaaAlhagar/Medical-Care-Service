@@ -13,5 +13,8 @@
     "axios": "^0.16.2",
     "laravel-mix": "^1.0",
     "vue": "^2.1.10"
+  },
+  "dependencies": {
+    "vuejs-paginator": "^2.0.2"
   }
 }

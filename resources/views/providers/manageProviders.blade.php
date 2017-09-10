@@ -7,7 +7,7 @@
 
 
 	<div class="col-md-12 text-center">
-			<div id="providers">
+		<div id="providers">
 			Medical Service Providers
 			<button class="btn btn-sm btn-success pull-right" type="button">Add Provider</button>
 
@@ -31,15 +31,14 @@
 						<span class="red"> Suspended </span> 
 					</td>
 					<td>
-					<button class="btn btn-sm btn-info" type="button">edit</button>
-					<button class="btn btn-sm btn-danger" type="button">delete</button>
+						<button class="btn btn-sm btn-info" type="button">edit</button>
+						<button class="btn btn-sm btn-danger" type="button">delete</button>
 					</td>
 				</tr>
 			</tbody>
 		</table>
-
-	</div>
-
+		<v-paginator v-if="providers.length > 10" :options="options" :resource_url="resource_url" @update="updateResource"></v-paginator>
+	  	</div>
 
 	</div>
 

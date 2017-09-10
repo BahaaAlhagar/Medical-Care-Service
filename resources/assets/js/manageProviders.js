@@ -9,18 +9,39 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+
+import VueResource from 'vue-resource';
+import VuePaginator from 'vuejs-paginator';
+
+Vue.use(VueResource);
+
+
 const manageProviders = new Vue({
     el: '#providers',
     data: {
-    	providers: []
-
+    	providers: [],
+    	resource_url: '/providers',
+    	options: {
+              remote_data: 'providers.data',
+              remote_current_page: 'providers.current_page',
+              remote_last_page: 'providers.last_page',
+              remote_next_page_url: 'providers.next_page_url',
+              remote_prev_page_url: 'providers.prev_page_url',
+              next_button_text: 'Go Next',
+              previous_button_text: 'Go Back'
+            },
     },
     methods: {
-
+ 		updateResource(data){
+			this.providers = data
+		},
     },
     created() {
     	axios.get('/providers')
  		.then(response => this.providers = response.data.providers.data);
 
-    }
+    },
+    components: {
+      VPaginator: VuePaginator
+    },
 });
