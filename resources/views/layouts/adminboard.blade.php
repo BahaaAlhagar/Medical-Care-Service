@@ -22,17 +22,7 @@
 
     @yield('css')
 
-        <!--[if lt IE 9]>
-        <script src="{{ URL::asset('js/html5shiv.min.js') }}"></script>
-        <![endif]-->
-        
-        <script src="{{ URL::asset('js/respond-1.4.2.min.js') }}"></script>
 
-
-        <!-- jquery & bootstrap requirements -->
-        <script src="{{ URL::asset('js/jquery-3.2.1.slim.min.js') }}"></script>
-        <script src="{{ URL::asset('js/popper.min.js') }}"></script>
-        <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
 
   </head>
 
@@ -67,6 +57,18 @@
         </div>
 
 
+        <!--[if lt IE 9]>
+        <script src="{{ URL::asset('js/html5shiv.min.js') }}"></script>
+        <![endif]-->
+        
+        <script src="{{ URL::asset('js/respond-1.4.2.min.js') }}"></script>
+
+
+        <!-- jquery & bootstrap requirements -->
+        <script src="{{ URL::asset('js/jquery-3.2.1.slim.min.js') }}"></script>
+        <script src="{{ URL::asset('js/popper.min.js') }}"></script>
+        <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
+        
 
         @yield('js')
 

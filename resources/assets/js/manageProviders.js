@@ -13,6 +13,10 @@ window.Vue = require('vue');
 import VueResource from 'vue-resource';
 import VuePaginator from 'vuejs-paginator';
 
+import Form from 'form';
+
+window.Form = Form;
+
 Vue.use(VueResource);
 
 
@@ -44,4 +48,25 @@ const manageProviders = new Vue({
     components: {
       VPaginator: VuePaginator
     },
+});
+
+
+
+createProvider = new Vue({
+    el: '#createProvider',
+
+    data: {
+        form: new Form({
+            name: '',
+            description: '',
+            active: ''
+        })
+    },
+
+    methods: {
+        onSubmit() {
+            this.form.post('/providers')
+                .then(response => alert('Wahoo!'));
+        }
+    }
 });

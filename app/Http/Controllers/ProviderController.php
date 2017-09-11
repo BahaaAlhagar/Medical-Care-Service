@@ -37,6 +37,7 @@ class ProviderController extends Controller
      */
     public function store(storeProviderRequest $request)
     {
+        $this->authorize('create', Provider::class);
         $provider = Provider::create($request->all());
         return response()->json($provider);
     }

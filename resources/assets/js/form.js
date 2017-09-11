@@ -130,7 +130,7 @@ class Form {
 }
 
 
-export default From;
+export default Form;
 
 /*new Vue({
     el: '#app',
