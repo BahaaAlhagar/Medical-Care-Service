@@ -13,7 +13,7 @@ class storeProviderRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,6 +26,7 @@ class storeProviderRequest extends FormRequest
         return [
             'name' => 'required|unique:providers',
             'description' => 'required|min:15',
+            'active' => 'required|boolean',
         ];
     }
 }

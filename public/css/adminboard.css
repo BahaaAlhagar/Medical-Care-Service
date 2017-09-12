@@ -73,3 +73,7 @@ table th {
 .green {
   color: green;
 }
+
+textarea {
+  resize: none;
+}

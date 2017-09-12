@@ -13,7 +13,7 @@ class ProviderController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('admin')->only('manage', 'index', 'create', 'store');
+        $this->middleware('admin')->only('index', 'store', 'update', 'delete');
     }
 
 
@@ -37,7 +37,6 @@ class ProviderController extends Controller
      */
     public function store(storeProviderRequest $request)
     {
-        $this->authorize('create', Provider::class);
         $provider = Provider::create($request->all());
         return response()->json($provider);
     }
