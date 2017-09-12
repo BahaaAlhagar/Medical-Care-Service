@@ -38,7 +38,7 @@ class ProviderController extends Controller
     public function store(storeProviderRequest $request)
     {
         $provider = Provider::create($request->all());
-        return response()->json($provider);
+        return $this->respondWithMessage('Provider Created Successfully!', $provider);
     }
 
     /**

@@ -43,6 +43,10 @@ const manageProviders = new Vue({
  		updateResource(data){
 			this.providers = data
 		},
+    updateProviders(response){
+      this.providers.unshift(response.item)
+      toastr.success('Success!', response.message)
+    }
     },
     created() {
     	axios.get('/providers')

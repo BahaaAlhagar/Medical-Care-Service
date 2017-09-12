@@ -16,7 +16,7 @@
 			<button class="btn btn-sm btn-success" data-toggle="modal" data-target="#addProvider">Add Provider</button>
 			</span>
 
-		<table class="table table-striped table-bordered main-table">
+		<table class="table table-responsive table-striped table-bordered main-table">
 			<thead class="thead-inverse">
 				<tr>
 				<th>Name</th>
@@ -50,7 +50,7 @@
 
 	  		<!-- Create Provider Modal -->
 
-	  		<add-provider></add-provider>
+	  		<add-provider @completed="updateProviders"></add-provider>
 	  	</div>
 
 	</div>

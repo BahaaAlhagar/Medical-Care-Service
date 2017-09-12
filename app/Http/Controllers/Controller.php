@@ -23,4 +23,13 @@ class Controller extends BaseController
         return view($template, $objects);
     }
 
+
+    protected function respondWithMessage(string $message='', $objects = [])
+    {
+
+    	$data = array_merge(['item' => $objects], ['message' => $message]);
+
+    	return response()->json($data);
+    }
+
 }

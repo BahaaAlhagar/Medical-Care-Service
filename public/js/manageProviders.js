@@ -800,6 +800,10 @@ var manageProviders = new Vue({
   methods: {
     updateResource: function updateResource(data) {
       this.providers = data;
+    },
+    updateProviders: function updateProviders(response) {
+      this.providers.unshift(response.item);
+      toastr.success('Success!', response.message);
     }
   },
   created: function created() {
@@ -14008,7 +14012,7 @@ var Form = function () {
     }, {
         key: 'onSuccess',
         value: function onSuccess(data) {
-            alert(data.message); // temporary
+            // alert(data.message); // temporary
 
             this.reset();
         }
@@ -14130,13 +14134,13 @@ var Errors = function () {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(41)
+  __webpack_require__(38)
 }
-var Component = __webpack_require__(38)(
+var Component = __webpack_require__(43)(
   /* script */
-  __webpack_require__(39),
+  __webpack_require__(44),
   /* template */
-  __webpack_require__(40),
+  __webpack_require__(45),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -14169,395 +14173,16 @@ module.exports = Component.exports
 
 /***/ }),
 /* 38 */
-/***/ (function(module, exports) {
-
-/* globals __VUE_SSR_CONTEXT__ */
-
-// this module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle
-
-module.exports = function normalizeComponent (
-  rawScriptExports,
-  compiledTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier /* server only */
-) {
-  var esModule
-  var scriptExports = rawScriptExports = rawScriptExports || {}
-
-  // ES6 modules interop
-  var type = typeof rawScriptExports.default
-  if (type === 'object' || type === 'function') {
-    esModule = rawScriptExports
-    scriptExports = rawScriptExports.default
-  }
-
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (compiledTemplate) {
-    options.render = compiledTemplate.render
-    options.staticRenderFns = compiledTemplate.staticRenderFns
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = injectStyles
-  }
-
-  if (hook) {
-    var functional = options.functional
-    var existing = functional
-      ? options.render
-      : options.beforeCreate
-    if (!functional) {
-      // inject component registration as beforeCreate hook
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    } else {
-      // register for functioal component in vue file
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return existing(h, context)
-      }
-    }
-  }
-
-  return {
-    esModule: esModule,
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
-/* 39 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            form: new Form({
-                name: '',
-                description: '',
-                active: ''
-            })
-        };
-    },
-
-    methods: {
-        onSubmit: function onSubmit() {
-            this.form.post('/providers').then(function (response) {
-                return alert('Wahoo!');
-            });
-        }
-    }
-
-});
-
-/***/ }),
-/* 40 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "modal fade",
-    attrs: {
-      "id": "addProvider",
-      "role": "dialog",
-      "aria-labelledby": "myModalLabel"
-    }
-  }, [_c('div', {
-    staticClass: "modal-dialog",
-    attrs: {
-      "role": "document"
-    }
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "modal-body",
-    attrs: {
-      "id": "createProvider"
-    }
-  }, [_c('form', {
-    attrs: {
-      "method": "POST",
-      "action": "/providers"
-    },
-    on: {
-      "submit": function($event) {
-        $event.preventDefault();
-        _vm.onSubmit($event)
-      },
-      "keydown": function($event) {
-        _vm.form.errors.clear($event.target.name)
-      },
-      "change": function($event) {
-        _vm.form.errors.clear($event.target.name)
-      }
-    }
-  }, [_c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "name"
-    }
-  }, [_vm._v("Provider Name:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.form.name),
-      expression: "form.name"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "id": "name",
-      "name": "name"
-    },
-    domProps: {
-      "value": (_vm.form.name)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.form.name = $event.target.value
-      }
-    }
-  }), _vm._v(" "), (_vm.form.errors.has('name')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.form.errors.get('name'))
-    }
-  }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "description"
-    }
-  }, [_vm._v("Provider Description:")]), _vm._v(" "), _c('textarea', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.form.description),
-      expression: "form.description"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "id": "description",
-      "name": "description"
-    },
-    domProps: {
-      "value": (_vm.form.description)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.form.description = $event.target.value
-      }
-    }
-  }), _vm._v(" "), (_vm.form.errors.has('description')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.form.errors.get('description'))
-    }
-  }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "active"
-    }
-  }, [_vm._v("Provider Status:")]), _vm._v(" "), _c('select', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.form.active),
-      expression: "form.active"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "id": "active",
-      "name": "active"
-    },
-    on: {
-      "change": function($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
-          return o.selected
-        }).map(function(o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val
-        });
-        _vm.form.active = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-      }
-    }
-  }, [_c('option', {
-    attrs: {
-      "value": "1",
-      "selected": ""
-    }
-  }, [_vm._v("Active")]), _vm._v(" "), _c('option', {
-    attrs: {
-      "value": "0"
-    }
-  }, [_vm._v("Suspended")])]), _vm._v(" "), (_vm.form.errors.has('active')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.form.errors.get('active'))
-    }
-  }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('button', {
-    staticClass: "button btn-lg btn-success",
-    attrs: {
-      "disabled": _vm.form.errors.any()
-    }
-  }, [_vm._v("Create")])])])])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "modal-header"
-  }, [_c('button', {
-    staticClass: "close",
-    attrs: {
-      "type": "button",
-      "data-dismiss": "modal",
-      "aria-label": "Close"
-    }
-  }, [_c('span', {
-    attrs: {
-      "aria-hidden": "true"
-    }
-  }, [_vm._v("×")])]), _vm._v(" "), _c('span', {
-    staticClass: "form-control-static pull-left"
-  }, [_c('h4', {
-    staticClass: "modal-title",
-    attrs: {
-      "id": "myModalLabel"
-    }
-  }, [_vm._v("Create Provider")])])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-61a78189", module.exports)
-  }
-}
-
-/***/ }),
-/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(42);
+var content = __webpack_require__(39);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(44)("6794e2e6", content, false);
+var update = __webpack_require__(41)("6794e2e6", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -14573,21 +14198,21 @@ if(false) {
 }
 
 /***/ }),
-/* 42 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(43)(undefined);
+exports = module.exports = __webpack_require__(40)(undefined);
 // imports
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 43 */
+/* 40 */
 /***/ (function(module, exports) {
 
 /*
@@ -14669,7 +14294,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 44 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -14688,7 +14313,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(45)
+var listToStyles = __webpack_require__(42)
 
 /*
 type StyleObject = {
@@ -14890,7 +14515,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 45 */
+/* 42 */
 /***/ (function(module, exports) {
 
 /**
@@ -14921,6 +14546,387 @@ module.exports = function listToStyles (parentId, list) {
   return styles
 }
 
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports) {
+
+/* globals __VUE_SSR_CONTEXT__ */
+
+// this module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = injectStyles
+  }
+
+  if (hook) {
+    var functional = options.functional
+    var existing = functional
+      ? options.render
+      : options.beforeCreate
+    if (!functional) {
+      // inject component registration as beforeCreate hook
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    } else {
+      // register for functioal component in vue file
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return existing(h, context)
+      }
+    }
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 44 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            form: new Form({
+                name: '',
+                description: '',
+                active: ''
+            })
+        };
+    },
+
+    methods: {
+        onSubmit: function onSubmit() {
+            this.form.post('/providers').then(function (response) {
+                return function (response) {
+                    this.$emit('completed', response);
+                };
+            });
+        }
+    }
+
+});
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal fade",
+    attrs: {
+      "id": "addProvider",
+      "role": "dialog",
+      "aria-labelledby": "myModalLabel"
+    }
+  }, [_c('div', {
+    staticClass: "modal-dialog",
+    attrs: {
+      "role": "document"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "modal-body",
+    attrs: {
+      "id": "createProvider"
+    }
+  }, [_c('form', {
+    attrs: {
+      "method": "POST",
+      "action": "/providers"
+    },
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.onSubmit($event)
+      },
+      "keydown": function($event) {
+        _vm.form.errors.clear($event.target.name)
+      },
+      "change": function($event) {
+        _vm.form.errors.clear($event.target.name)
+      }
+    }
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "name"
+    }
+  }, [_vm._v("Provider Name:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.form.name),
+      expression: "form.name"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "name",
+      "name": "name"
+    },
+    domProps: {
+      "value": (_vm.form.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.form.name = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.form.errors.has('name')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.form.errors.get('name'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "description"
+    }
+  }, [_vm._v("Provider Description:")]), _vm._v(" "), _c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.form.description),
+      expression: "form.description"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "description",
+      "name": "description"
+    },
+    domProps: {
+      "value": (_vm.form.description)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.form.description = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.form.errors.has('description')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.form.errors.get('description'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "active"
+    }
+  }, [_vm._v("Provider Status:")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.form.active),
+      expression: "form.active"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "active",
+      "name": "active"
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.form.active = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": "1",
+      "selected": ""
+    }
+  }, [_vm._v("Active")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "0"
+    }
+  }, [_vm._v("Suspended")])]), _vm._v(" "), (_vm.form.errors.has('active')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.form.errors.get('active'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('button', {
+    staticClass: "button btn-lg btn-success",
+    attrs: {
+      "disabled": _vm.form.errors.any()
+    }
+  }, [_vm._v("Create")])])])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal-header"
+  }, [_c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c('span', {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])]), _vm._v(" "), _c('span', {
+    staticClass: "form-control-static pull-left"
+  }, [_c('h4', {
+    staticClass: "modal-title",
+    attrs: {
+      "id": "myModalLabel"
+    }
+  }, [_vm._v("Create Provider")])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-61a78189", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

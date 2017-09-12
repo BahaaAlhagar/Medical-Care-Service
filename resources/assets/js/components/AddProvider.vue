@@ -75,7 +75,10 @@
         methods: {
         onSubmit() {
             this.form.post('/providers')
-                .then(response => alert('Wahoo!'));
+                .then(response => function(response) {
+                    this.$emit('completed', response)
+                    }
+                );
             }
         }
 
