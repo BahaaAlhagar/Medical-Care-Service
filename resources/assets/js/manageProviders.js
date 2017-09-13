@@ -15,7 +15,9 @@ import VuePaginator from 'vuejs-paginator';
 
 import Form from './Form';
 
+import jquery from 'jquery';
 import toastr from 'toastr';
+import bootstrap from 'bootstrap';
 
 
 
@@ -26,6 +28,7 @@ Vue.use(VueResource);
 
 
 import AddProvider from './components/AddProvider';
+import EditProvider from './components/EditProvider';
 
 
 const manageProviders = new Vue({
@@ -49,8 +52,15 @@ const manageProviders = new Vue({
 		},
     updateProviders(response){
       this.providers.unshift(response.item);
-      
+      $('#addProvider').modal('hide');
       toastr.success(response.message);
+    },
+    editProvider(provider){
+      this.$emit('editModalOpen', provider);
+      $('#editProvider').modal('show');
+    },
+    deleteProvider(provider){
+      console.log(provider);
     }
     },
     created() {
@@ -60,13 +70,12 @@ const manageProviders = new Vue({
     },
     components: {
       VPaginator: VuePaginator,
-      AddProvider: AddProvider
+      AddProvider: AddProvider,
+      EditProvider: EditProvider
     }
 });
 
 
-
-
-
-
-
+toastr.options = {
+  "positionClass": "toast-bottom-right",
+}

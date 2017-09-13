@@ -13,7 +13,7 @@
 		<div id="providers">
 			Medical Service Providers
 			<span class="pull-right">
-			<button class="btn btn-sm btn-success" data-toggle="modal" data-target="#addProvider" @click="isShown = true">Add Provider</button>
+			<button class="btn btn-sm btn-success" data-toggle="modal" data-target="#addProvider">Add Provider</button>
 			</span>
 
 		<table v-if="providers.length" class="table table-responsive table-striped table-bordered main-table">
@@ -36,8 +36,8 @@
 						<span class="red"> Suspended </span> 
 					</td>
 					<td>
-						<button class="btn btn-sm btn-info" type="button">edit</button>
-						<button class="btn btn-sm btn-danger" type="button">delete</button>
+						<button @click.prevent="editProvider(provider)" data-toggle="modal" class="btn btn-sm btn-info" type="button">edit</button>
+						<button @click.prevent="deleteProvider(provider)" class="btn btn-sm btn-danger" type="button">delete</button>
 					</td>
 				</tr>
 			</tbody>
@@ -51,6 +51,10 @@
 	  		<!-- Create Provider Modal -->
 
 	  		<add-provider @completed="updateProviders"></add-provider>
+	  		
+	  		<!-- edit Provider Modal -->
+
+	  		<edit-provider></edit-provider>
 	  	</div>
 
 	</div>
