@@ -13,10 +13,10 @@
 		<div id="providers">
 			Medical Service Providers
 			<span class="pull-right">
-			<button class="btn btn-sm btn-success" data-toggle="modal" data-target="#addProvider">Add Provider</button>
+			<button class="btn btn-sm btn-success" data-toggle="modal" data-target="#addProvider" @click="isShown = true">Add Provider</button>
 			</span>
 
-		<table class="table table-responsive table-striped table-bordered main-table">
+		<table v-if="providers.length" class="table table-responsive table-striped table-bordered main-table">
 			<thead class="thead-inverse">
 				<tr>
 				<th>Name</th>
@@ -43,7 +43,7 @@
 			</tbody>
 		</table>
 		<br>
-		<v-paginator :options="options" :resource_url="resource_url" @update="updateResource"></v-paginator>
+		<v-paginator v-if="providers.length" :options="options" :resource_url="resource_url" @update="updateResource"></v-paginator>
 		<br>
 
 
@@ -68,8 +68,8 @@
 
 
 		@section('js')
+
     	<script src="{{ URL::asset('js/manageProviders.js') }}"></script>
-        <script src="{{ URL::asset('js/toastr.min.js') }}"></script>
 
     	@endsection
 

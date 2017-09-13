@@ -15,6 +15,10 @@ import VuePaginator from 'vuejs-paginator';
 
 import Form from './Form';
 
+import toastr from 'toastr';
+
+
+
 window.Form = Form;
 
 Vue.use(VueResource);
@@ -41,11 +45,12 @@ const manageProviders = new Vue({
     },
     methods: {
  		updateResource(data){
-			this.providers = data
+			this.providers = data;
 		},
     updateProviders(response){
-      this.providers.unshift(response.item)
-      toastr.success('Success!', response.message)
+      this.providers.unshift(response.item);
+      
+      toastr.success(response.message);
     }
     },
     created() {

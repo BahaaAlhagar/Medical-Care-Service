@@ -75,10 +75,7 @@
         methods: {
         onSubmit() {
             this.form.post('/providers')
-                .then(response => function(response) {
-                    this.$emit('completed', response)
-                    }
-                );
+                .then(response => this.$emit('completed', response));
             }
         }
 
