@@ -520,14 +520,12 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_resource__["a" /* default */]);
 
 
 
-var eventBus = new Vue();
-/* harmony default export */ __webpack_exports__["default"] = (eventBus);
+window.eventBus = new Vue();
 
 var manageProviders = new Vue({
   el: '#providers',
   data: {
     providers: [],
-    provider: [],
     resource_url: '/providers',
     options: {
       remote_data: 'providers.data',
@@ -29545,7 +29543,6 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__manageProviders__ = __webpack_require__(2);
 //
 //
 //
@@ -29613,8 +29610,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -29627,24 +29622,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             })
         };
     },
-
-    props: ['providers'],
     mounted: function mounted() {
-        __WEBPACK_IMPORTED_MODULE_0__manageProviders__["default"].$on('editModalOpen', function (provider) {
+        var self = this;
+        eventBus.$on('editModalOpen', function (provider) {
             console.log(provider);
-            this.editform.name = provider.name;
-            this.editform.description = provider.description;
-            this.editform.active = provider.active;
-            this.editform.id = provider.id;
+            self.editform.name = provider.name;
+            self.editform.description = provider.description;
+            self.editform.active = provider.active;
+            self.editform.id = provider.id;
         });
     },
 
     methods: {
         onSubmit: function onSubmit() {
-            var _this = this;
-
-            this.editform.patch('/providers').then(function (response) {
-                return _this.$emit('completed', response);
+            var self = this;
+            self.editform.patch('/providers').then(function (response) {
+                return self.$emit('completed', response);
             });
         }
     }

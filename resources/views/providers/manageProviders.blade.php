@@ -54,7 +54,7 @@
 	  		
 	  		<!-- edit Provider Modal -->
 
-	  		<edit-provider :provider="provider"></edit-provider>
+	  		<edit-provider></edit-provider>
 	  	</div>
 
 	</div>

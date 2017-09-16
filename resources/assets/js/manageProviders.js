@@ -33,15 +33,12 @@ import EditProvider from './components/EditProvider';
 
 
 
-const eventBus = new Vue();
-export default eventBus;
-
+window.eventBus = new Vue();
 
 const manageProviders = new Vue({
     el: '#providers',
     data: {
-    	providers: [],
-      provider: [],
+      providers: [],
     	resource_url: '/providers',
     	options: {
               remote_data: 'providers.data',
