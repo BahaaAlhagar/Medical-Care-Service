@@ -80,7 +80,6 @@
         mounted() {
             let self = this;
         	eventBus.$on('editModalOpen', function(provider){
-                console.log(provider);
         		self.editform.name = provider.name;
       			self.editform.description = provider.description;
       			self.editform.active = provider.active;

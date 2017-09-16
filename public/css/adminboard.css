@@ -63,6 +63,14 @@ a:hover {
 
 table th {
   text-align: center;
+  max-width: 350px;
+}
+table td {
+  text-align: center;
+  max-width: 350px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 
