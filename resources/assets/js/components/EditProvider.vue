@@ -66,6 +66,8 @@
 
 
 <script>
+    import eventBus from '../manageProviders';
+
 	export default {
         data() {
         return {
@@ -73,16 +75,19 @@
                 name: '',
                 description: '',
                 active: '',
+                id: ''
             })
         };
         },
-        created() {
-        	this.$on('editModalOpen', function(provider){
+        props: ['providers'],
+        mounted() {
+        	eventBus.$on('editModalOpen', function(provider){
+                console.log(provider);
         		this.editform.name = provider.name;
-      			this.editform.id = provider.id;
       			this.editform.description = provider.description;
       			this.editform.active = provider.active;
-        	})
+                this.editform.id = provider.id;
+        	});
         },
         methods: {
         onSubmit() {

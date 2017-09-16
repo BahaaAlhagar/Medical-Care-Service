@@ -31,10 +31,17 @@ import AddProvider from './components/AddProvider';
 import EditProvider from './components/EditProvider';
 
 
+
+
+const eventBus = new Vue();
+export default eventBus;
+
+
 const manageProviders = new Vue({
     el: '#providers',
     data: {
     	providers: [],
+      provider: [],
     	resource_url: '/providers',
     	options: {
               remote_data: 'providers.data',
@@ -56,7 +63,7 @@ const manageProviders = new Vue({
       toastr.success(response.message);
     },
     editProvider(provider){
-      this.$emit('editModalOpen', provider);
+      eventBus.$emit('editModalOpen', provider);
       $('#editProvider').modal('show');
     },
     deleteProvider(provider){

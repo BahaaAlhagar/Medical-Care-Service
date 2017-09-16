@@ -12,12 +12,14 @@
   "devDependencies": {
     "axios": "^0.16.2",
     "laravel-mix": "^1.0",
+    "cross-env": "^3.2.3",
     "vue": "^2.1.10"
   },
   "dependencies": {
     "jquery": "^3.2.1",
     "popper.js": "^1.11.0",
     "toastr": "^2.1.2",
-    "vuejs-paginator": "^2.0.2"
+    "vuejs-paginator": "^2.0.2",
+    "vuex": "^2.4.0"
   }
 }

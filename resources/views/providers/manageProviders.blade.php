@@ -26,7 +26,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="provider in providers" :key="provider.id">
+				<tr v-for="provider in providers" :provider="provider" :key="provider.id">
 					<td> @{{ provider.name }} </td>
 					<td> @{{ provider.description }} </td>
 					<td v-if="provider.active">
@@ -36,8 +36,8 @@
 						<span class="red"> Suspended </span> 
 					</td>
 					<td>
-						<button @click.prevent="editProvider(provider)" data-toggle="modal" class="btn btn-sm btn-info" type="button">edit</button>
-						<button @click.prevent="deleteProvider(provider)" class="btn btn-sm btn-danger" type="button">delete</button>
+						<button @click="editProvider(provider)" data-toggle="modal" class="btn btn-sm btn-info" type="button">edit</button>
+						<button @click="deleteProvider(provider)" class="btn btn-sm btn-danger" type="button">delete</button>
 					</td>
 				</tr>
 			</tbody>
@@ -54,7 +54,7 @@
 	  		
 	  		<!-- edit Provider Modal -->
 
-	  		<edit-provider></edit-provider>
+	  		<edit-provider :provider="provider"></edit-provider>
 	  	</div>
 
 	</div>
