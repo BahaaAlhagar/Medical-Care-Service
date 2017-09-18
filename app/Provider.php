@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Provider extends Model
 {
 
-	protected $guarded = [];
+	protected $guarded = ['id'];
 	
     public function users()
     {

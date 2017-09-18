@@ -13,7 +13,7 @@ class updateProviderRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +23,7 @@ class updateProviderRequest extends FormRequest
      */
     public function rules()
     {
+        $provider = $this->segment(2);
         return [
             'name' => 'required|unique:providers,name,' .$provider,
             'description' => 'required|min:15',

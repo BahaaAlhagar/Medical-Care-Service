@@ -49,7 +49,7 @@ class ProviderController extends Controller
      */
     public function show(Provider $provider)
     {
-        return view('providers/providerProfile', conmpact('provider'));
+        return view('providers/providerProfile', compact('provider'));
     }
 
 
@@ -63,7 +63,7 @@ class ProviderController extends Controller
     public function update(updateProviderRequest $request, Provider $provider)
     {
         $provider->update($request->all());
-        return response()->json($provider);
+        return $this->respondWithMessage('Provider updated!!', $provider);
     }
 
     /**

@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 10);
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -70,7 +70,7 @@
 "use strict";
 
 
-var bind = __webpack_require__(3);
+var bind = __webpack_require__(2);
 var isBuffer = __webpack_require__(14);
 
 /*global toString:true*/
@@ -397,10 +397,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(4);
+    adapter = __webpack_require__(3);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(4);
+    adapter = __webpack_require__(3);
   }
   return adapter;
 }
@@ -475,106 +475,6 @@ module.exports = defaults;
 
 /***/ }),
 /* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_resource__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuejs_paginator__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuejs_paginator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vuejs_paginator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Form__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jquery__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_jquery__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_toastr__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_toastr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_toastr__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_bootstrap__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_bootstrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_bootstrap__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_AddProvider__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_AddProvider___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_AddProvider__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_EditProvider__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_EditProvider___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_EditProvider__);
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
-__webpack_require__(11);
-
-window.Vue = __webpack_require__(32);
-
-
-
-
-
-
-
-
-
-
-window.Form = __WEBPACK_IMPORTED_MODULE_2__Form__["a" /* default */];
-
-Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_resource__["a" /* default */]);
-
-
-
-
-window.eventBus = new Vue();
-
-var manageProviders = new Vue({
-  el: '#providers',
-  data: {
-    providers: [],
-    resource_url: '/providers',
-    options: {
-      remote_data: 'providers.data',
-      remote_current_page: 'providers.current_page',
-      remote_last_page: 'providers.last_page',
-      remote_next_page_url: 'providers.next_page_url',
-      remote_prev_page_url: 'providers.prev_page_url',
-      next_button_text: 'Go Next',
-      previous_button_text: 'Go Back'
-    }
-  },
-  methods: {
-    updateResource: function updateResource(data) {
-      this.providers = data;
-    },
-    updateProviders: function updateProviders(response) {
-      this.providers.unshift(response.item);
-      $('#addProvider').modal('hide');
-      __WEBPACK_IMPORTED_MODULE_4_toastr___default.a.success(response.message);
-    },
-    editProvider: function editProvider(provider) {
-      eventBus.$emit('editModalOpen', provider);
-      $('#editProvider').modal('show');
-    },
-    deleteProvider: function deleteProvider(provider) {
-      console.log(provider);
-    }
-  },
-  created: function created() {
-    var _this = this;
-
-    axios.get('/providers').then(function (response) {
-      return _this.providers = response.data.providers.data;
-    });
-  },
-
-  components: {
-    VPaginator: __WEBPACK_IMPORTED_MODULE_1_vuejs_paginator___default.a,
-    AddProvider: __WEBPACK_IMPORTED_MODULE_6__components_AddProvider___default.a,
-    EditProvider: __WEBPACK_IMPORTED_MODULE_7__components_EditProvider___default.a
-  }
-});
-
-__WEBPACK_IMPORTED_MODULE_4_toastr___default.a.options = {
-  "positionClass": "toast-bottom-right"
-};
-
-/***/ }),
-/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -592,7 +492,7 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -603,7 +503,7 @@ var settle = __webpack_require__(18);
 var buildURL = __webpack_require__(20);
 var parseHeaders = __webpack_require__(21);
 var isURLSameOrigin = __webpack_require__(22);
-var createError = __webpack_require__(5);
+var createError = __webpack_require__(4);
 var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(23);
 
 module.exports = function xhrAdapter(config) {
@@ -779,7 +679,7 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -804,7 +704,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -816,7 +716,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -842,7 +742,7 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -11102,7 +11002,7 @@ return jQuery;
 
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -11199,11 +11099,118 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(2);
+module.exports = __webpack_require__(10);
 
+
+/***/ }),
+/* 10 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_resource__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuejs_paginator__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuejs_paginator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vuejs_paginator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Form__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jquery__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_jquery__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_toastr__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_toastr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_toastr__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_bootstrap__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_bootstrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_bootstrap__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_AddProvider__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_AddProvider___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_AddProvider__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_EditProvider__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_EditProvider___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_EditProvider__);
+
+/**
+ * First we will load all of this project's JavaScript dependencies which
+ * includes Vue and other libraries. It is a great starting point when
+ * building robust, powerful web applications using Vue and Laravel.
+ */
+
+__webpack_require__(11);
+
+window.Vue = __webpack_require__(32);
+
+
+
+
+
+
+
+
+
+
+window.Form = __WEBPACK_IMPORTED_MODULE_2__Form__["a" /* default */];
+
+Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_resource__["a" /* default */]);
+
+
+
+
+window.eventBus = new Vue();
+
+var manageProviders = new Vue({
+  el: '#providers',
+  data: {
+    providers: [],
+    provider: [],
+    resource_url: '/providers',
+    options: {
+      remote_data: 'providers.data',
+      remote_current_page: 'providers.current_page',
+      remote_last_page: 'providers.last_page',
+      remote_next_page_url: 'providers.next_page_url',
+      remote_prev_page_url: 'providers.prev_page_url',
+      next_button_text: 'Go Next',
+      previous_button_text: 'Go Back'
+    }
+  },
+  methods: {
+    updateResource: function updateResource(data) {
+      this.providers = data;
+    },
+    updateProviders: function updateProviders(response) {
+      this.providers.unshift(response.item);
+      $('#addProvider').modal('hide');
+      __WEBPACK_IMPORTED_MODULE_4_toastr___default.a.success(response.message);
+    },
+    editProvider: function editProvider(provider) {
+      eventBus.$emit('editModalOpen', provider);
+      $('#editProvider').modal('show');
+    },
+    deleteProvider: function deleteProvider(provider) {
+      console.log(provider);
+    }
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/providers').then(function (response) {
+      return _this.providers = response.data.providers.data;
+    }),
+    // updating providers in update method
+    eventBus.$on('providerUpdated', function (response) {
+      $('#editProvider').modal('hide');
+      __WEBPACK_IMPORTED_MODULE_4_toastr___default.a.info(response.message);
+      console.log(response.item.id);
+    });
+  },
+
+  components: {
+    VPaginator: __WEBPACK_IMPORTED_MODULE_1_vuejs_paginator___default.a,
+    AddProvider: __WEBPACK_IMPORTED_MODULE_6__components_AddProvider___default.a,
+    EditProvider: __WEBPACK_IMPORTED_MODULE_7__components_EditProvider___default.a
+  }
+});
+
+__WEBPACK_IMPORTED_MODULE_4_toastr___default.a.options = {
+  "positionClass": "toast-bottom-right"
+};
 
 /***/ }),
 /* 11 */
@@ -11257,7 +11264,7 @@ module.exports = __webpack_require__(13);
 
 
 var utils = __webpack_require__(0);
-var bind = __webpack_require__(3);
+var bind = __webpack_require__(2);
 var Axios = __webpack_require__(15);
 var defaults = __webpack_require__(1);
 
@@ -11292,9 +11299,9 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(7);
+axios.Cancel = __webpack_require__(6);
 axios.CancelToken = __webpack_require__(30);
-axios.isCancel = __webpack_require__(6);
+axios.isCancel = __webpack_require__(5);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -11644,7 +11651,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 "use strict";
 
 
-var createError = __webpack_require__(5);
+var createError = __webpack_require__(4);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -12063,7 +12070,7 @@ module.exports = InterceptorManager;
 
 var utils = __webpack_require__(0);
 var transformData = __webpack_require__(27);
-var isCancel = __webpack_require__(6);
+var isCancel = __webpack_require__(5);
 var defaults = __webpack_require__(1);
 
 /**
@@ -12216,7 +12223,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 "use strict";
 
 
-var Cancel = __webpack_require__(7);
+var Cancel = __webpack_require__(6);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -24530,7 +24537,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
  */
 /* global define */
 ; (function (define) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(8)], __WEBPACK_AMD_DEFINE_RESULT__ = function ($) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function ($) {
         return (function () {
             var $container;
             var listener;
@@ -28802,7 +28809,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(43)
 }
-var Component = __webpack_require__(9)(
+var Component = __webpack_require__(8)(
   /* script */
   __webpack_require__(48),
   /* template */
@@ -29502,7 +29509,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(9)(
+var Component = __webpack_require__(8)(
   /* script */
   __webpack_require__(51),
   /* template */
@@ -29622,10 +29629,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             })
         };
     },
+
+    props: ['provider'],
     mounted: function mounted() {
         var self = this;
         eventBus.$on('editModalOpen', function (provider) {
-            console.log(provider);
             self.editform.name = provider.name;
             self.editform.description = provider.description;
             self.editform.active = provider.active;
@@ -29634,10 +29642,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
-        onSubmit: function onSubmit() {
-            var self = this;
-            self.editform.patch('/providers').then(function (response) {
-                return self.$emit('completed', response);
+        onUpdate: function onUpdate() {
+            this.editform.patch('/providers/' + this.editform.id).then(function (response) {
+                return eventBus.$emit('providerUpdated', response);
             });
         }
     }

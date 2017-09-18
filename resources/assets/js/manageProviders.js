@@ -39,6 +39,7 @@ const manageProviders = new Vue({
     el: '#providers',
     data: {
       providers: [],
+      provider: [],
     	resource_url: '/providers',
     	options: {
               remote_data: 'providers.data',
@@ -51,26 +52,31 @@ const manageProviders = new Vue({
             },
     },
     methods: {
- 		updateResource(data){
-			this.providers = data;
-		},
-    updateProviders(response){
-      this.providers.unshift(response.item);
-      $('#addProvider').modal('hide');
-      toastr.success(response.message);
-    },
-    editProvider(provider){
-      eventBus.$emit('editModalOpen', provider);
-      $('#editProvider').modal('show');
-    },
-    deleteProvider(provider){
-      console.log(provider);
-    }
+   		updateResource(data){
+  			this.providers = data;
+  		},
+      updateProviders(response){
+        this.providers.unshift(response.item);
+        $('#addProvider').modal('hide');
+        toastr.success(response.message);
+      },
+      editProvider(provider){
+        eventBus.$emit('editModalOpen', provider);
+        $('#editProvider').modal('show');
+      },
+      deleteProvider(provider){
+        console.log(provider);
+      }
     },
     created() {
-    	axios.get('/providers')
- 		.then(response => this.providers = response.data.providers.data);
-
+      axios.get('/providers')
+   		.then(response => this.providers = response.data.providers.data),
+      // updating providers in update method
+      eventBus.$on('providerUpdated', function(response){
+        $('#editProvider').modal('hide');
+        toastr.info(response.message);
+        console.log(response.item.id);
+      })
     },
     components: {
       VPaginator: VuePaginator,

@@ -77,6 +77,7 @@
             })
         };
         },
+        props: ['provider'],
         mounted() {
             let self = this;
         	eventBus.$on('editModalOpen', function(provider){
@@ -87,10 +88,9 @@
         	});
         },
         methods: {
-        onSubmit() {
-            let self = this;
-            self.editform.patch('/providers')
-                .then(response => self.$emit('completed', response));
+        onUpdate() {
+            this.editform.patch('/providers/' + this.editform.id)
+                .then(response => eventBus.$emit('providerUpdated', response));
             },
 
         }
