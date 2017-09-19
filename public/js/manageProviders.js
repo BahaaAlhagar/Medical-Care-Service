@@ -11184,7 +11184,12 @@ var manageProviders = new Vue({
       $('#editProvider').modal('show');
     },
     deleteProvider: function deleteProvider(provider) {
-      console.log(provider);
+      if (confirm('Are you sure you want to delete this Rrovider')) {
+        axios.delete('/providers/' + provider.id).then(function (response) {
+          return __WEBPACK_IMPORTED_MODULE_4_toastr___default.a.warning(response.data.message);
+        });
+        manageProviders.$refs.vpaginator.fetchData();
+      }
     }
   },
   created: function created() {
@@ -11192,7 +11197,9 @@ var manageProviders = new Vue({
 
     axios.get('/providers').then(function (response) {
       return _this.providers = response.data.providers.data;
-    }),
+    });
+  },
+  mounted: function mounted() {
     // updating providers in update method
     eventBus.$on('providerUpdated', function (response) {
       $('#editProvider').modal('hide');
