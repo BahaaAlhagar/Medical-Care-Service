@@ -43,7 +43,7 @@
 			</tbody>
 		</table>
 		<br>
-		<v-paginator v-if="providers.length" :options="options" :resource_url="resource_url" @update="updateResource"></v-paginator>
+		<v-paginator v-if="providers.length" :options="options" ref="vpaginator"  :resource_url="resource_url" @update="updateResource"></v-paginator>
 		<br>
 
 

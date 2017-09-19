@@ -11197,7 +11197,8 @@ var manageProviders = new Vue({
     eventBus.$on('providerUpdated', function (response) {
       $('#editProvider').modal('hide');
       __WEBPACK_IMPORTED_MODULE_4_toastr___default.a.info(response.message);
-      console.log(response.item.id);
+      // updating the view
+      manageProviders.$refs.vpaginator.fetchData();
     });
   },
 
@@ -28821,7 +28822,7 @@ var Component = __webpack_require__(8)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\www\\medical\\resources\\assets\\js\\components\\AddProvider.vue"
+Component.options.__file = "d:\\www\\medical\\resources\\assets\\js\\components\\AddProvider.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] AddProvider.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -29521,7 +29522,7 @@ var Component = __webpack_require__(8)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\www\\medical\\resources\\assets\\js\\components\\EditProvider.vue"
+Component.options.__file = "d:\\www\\medical\\resources\\assets\\js\\components\\EditProvider.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] EditProvider.vue: functional components are not supported with templates, they should use render functions.")}
 

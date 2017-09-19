@@ -75,7 +75,8 @@ const manageProviders = new Vue({
       eventBus.$on('providerUpdated', function(response){
         $('#editProvider').modal('hide');
         toastr.info(response.message);
-        console.log(response.item.id);
+        // updating the view
+        manageProviders.$refs.vpaginator.fetchData();
       })
     },
     components: {
