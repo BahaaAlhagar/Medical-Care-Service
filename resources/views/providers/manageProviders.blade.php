@@ -26,8 +26,8 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="provider in providers" :provider="provider" :key="provider.id">
-					<td> @{{ provider.name }} </td>
+				<tr v-for="provider in providers" :key="provider.id">
+					<td><a :href="'/providers/' + provider.id"> @{{ provider.name }} </a></td>
 					<td> @{{ provider.description }} </td>
 					<td v-if="provider.active">
 						<span class="green"> Active </span> 

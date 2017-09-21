@@ -73,6 +73,10 @@ table td {
   white-space: nowrap;
 }
 
+table a {
+  color: black;
+}
+
 
 .red {
   color: red;
