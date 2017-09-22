@@ -11174,6 +11174,9 @@ var manageProviders = new Vue({
     updateResource: function updateResource(data) {
       this.providers = data;
     },
+    fetchCurrentPage: function fetchCurrentPage() {
+      manageProviders.$refs.vpaginator.fetchData('/providers?page=' + manageProviders.$refs.vpaginator.current_page);
+    },
     updateProviders: function updateProviders(response) {
       this.providers.unshift(response.item);
       $('#addProvider').modal('hide');
@@ -11184,28 +11187,38 @@ var manageProviders = new Vue({
       $('#editProvider').modal('show');
     },
     deleteProvider: function deleteProvider(provider) {
+      var _this = this;
+
       if (confirm('Are you sure you want to delete this Rrovider')) {
         axios.delete('/providers/' + provider.id).then(function (response) {
-          return __WEBPACK_IMPORTED_MODULE_4_toastr___default.a.warning(response.data.message);
+          return _this.onProviderDelete(response);
         });
-        manageProviders.$refs.vpaginator.fetchData();
       }
-    }
-  },
-  created: function created() {
-    var _this = this;
-
-    axios.get('/providers').then(function (response) {
-      return _this.providers = response.data.providers.data;
-    });
-  },
-  mounted: function mounted() {
-    // updating providers in update method
-    eventBus.$on('providerUpdated', function (response) {
+    },
+    onProviderDelete: function onProviderDelete(response) {
+      __WEBPACK_IMPORTED_MODULE_4_toastr___default.a.warning(response.data.message);
+      this.fetchCurrentPage();
+    },
+    onProviderUpdate: function onProviderUpdate(response) {
       $('#editProvider').modal('hide');
       __WEBPACK_IMPORTED_MODULE_4_toastr___default.a.info(response.message);
       // updating the view
-      manageProviders.$refs.vpaginator.fetchData();
+      this.fetchCurrentPage();
+    }
+  },
+  created: function created() {
+    var _this2 = this;
+
+    axios.get('/providers').then(function (response) {
+      return _this2.providers = response.data.providers.data;
+    });
+  },
+  mounted: function mounted() {
+    var _this3 = this;
+
+    // updating providers in update method
+    eventBus.$on('providerUpdated', function (response) {
+      return _this3.onProviderUpdate(response);
     });
   },
 
